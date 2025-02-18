@@ -3,7 +3,7 @@ package de.deutschebank.recruiting.backends.uselessfacts.domain
 import java.time.Instant
 
 data class LogAccessEntry(
-    val statisticsMetadata: StatisticsMetadata,
+    var statisticsMetadata: StatisticsMetadata?,
     val typeOfEntry: LogAccessEntryTypeEnum,
     val accessedAt: Instant,
     val ipAddress: String,

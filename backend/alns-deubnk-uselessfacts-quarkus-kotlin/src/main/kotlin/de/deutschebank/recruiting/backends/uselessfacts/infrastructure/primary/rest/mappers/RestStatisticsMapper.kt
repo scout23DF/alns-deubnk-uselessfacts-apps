@@ -34,10 +34,10 @@ class RestStatisticsMapper() {
             statisticsMetadataList = analyticsFactsSummary.statisticsMetadataList?.map { metadata ->
                 StatisticsMetadataResponse(
                     uselessFactResponse = UselessFactResponse(
-                        shortenedUrl = metadata.uselessFact.shortenedUrl.toString(),
-                        text = metadata.uselessFact.text,
-                        language = metadata.uselessFact.language,
-                        permalink = metadata.uselessFact.permalink,
+                        shortenedUrl = metadata.uselessFact?.shortenedUrl.toString(),
+                        text = metadata.uselessFact?.text.toString(),
+                        language = metadata.uselessFact?.language.toString(),
+                        permalink = metadata.uselessFact?.permalink.toString(),
                     ),
                     hitsCount = metadata.hitsCount,
                     logAccessEntriesList = metadata.logAccessEntriesList.map { logEntry ->

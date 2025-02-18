@@ -14,7 +14,7 @@ class InMemoryFactRepository: FactRepository {
     private val factsCacheMap = ConcurrentHashMap<String, UselessFact>()
 
     override fun save(newFact: UselessFact?) {
-        if (factsCacheMap.containsKey(newFact?.shortenedUrl)) {
+        if (newFact != null && factsCacheMap.containsKey(newFact?.shortenedUrl)) {
             throw IllegalStateException("Fact already exists for $newFact.shortenedUrl")
         }
         newFact?.let { factsCacheMap.put(newFact.shortenedUrl.toString(), it) }

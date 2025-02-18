@@ -1,6 +1,6 @@
 package de.deutschebank.recruiting.backends.uselessfacts.application
 
-import de.deutschebank.recruiting.backends.shared.strings.domain.StringUtils
+import de.deutschebank.recruiting.backends.shared.strings.domain.DBStringUtils
 import de.deutschebank.recruiting.backends.uselessfacts.domain.UselessFact
 import de.deutschebank.recruiting.backends.uselessfacts.domain.FactRepository
 import de.deutschebank.recruiting.backends.uselessfacts.infrastructure.secondary.restclient.JsphFactFetcherService
@@ -10,7 +10,8 @@ import jakarta.enterprise.context.ApplicationScoped
 @ApplicationScoped
 class FactsApplicationService(
     private val factRepository: FactRepository,
-    private val jsphFactFetcherService: JsphFactFetcherService
+    private val jsphFactFetcherService: JsphFactFetcherService,
+    private val dbStringUtils: DBStringUtils
 ) {
 
     private val logger = KotlinLogging.logger {}
@@ -26,7 +27,7 @@ class FactsApplicationService(
             remoteFetchedFact = jsphFactFetcherService.fetchRandomFact(language)
 
             newShortenedUrl = remoteFetchedFact?.permalink?.let {
-                StringUtils.generateShortUrl(it)
+                dbStringUtils.generateShortUrl(it)
             }
 
             alreadyExists = newShortenedUrl?.let { this.factRepository.findById(it) } != null
