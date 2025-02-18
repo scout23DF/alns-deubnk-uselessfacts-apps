@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.deutschebank.recruiting</groupId>
+    <artifactId>alns-deubnk-uselessfacts-apps-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>ALNS-DeutscheBank-UselessFactsApps-Parent</name>
+    <description>DeutscheBank Recruiting :: Home Task :: Useless Facts App :: Parent project</description>
+
+    <modules>
+        <module>backend/alns-deubnk-uselessfacts-quarkus-kotlin</module>
+        <module>frontends/alns-deubnk-uselessfacts-angular</module>
+    </modules>
+
+</project> 

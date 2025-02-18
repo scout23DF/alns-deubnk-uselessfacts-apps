@@ -1,0 +1,70 @@
+.analytics-dashboard {
+  padding: 16px;
+
+  mat-table {
+    width: 100%;
+  }
+}
+
+.analytics-details {
+  width: 95%;
+  padding: 1px;
+  // background-color: lightyellow;
+  // border: 1px solid #ddd;
+}
+
+.analytics-fake-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.analytics-field-full-width {
+  width: 100%;
+}
+
+.facts-grid-table {
+  width: 100%;
+  margin-right: 16px;
+}
+
+.mat-column-shortenedUrl {
+  width: 100px;
+  border-right: 1px solid currentColor;
+  padding-right: 10px;
+  text-align: center;
+}
+
+.mat-column-text {
+  // width: 500px;
+  border-right: 1px solid currentColor;
+  padding-right: 10px;
+  text-align: left;
+}
+
+.mat-column-hitsCount {
+  width: 40px;
+  border-right: 1px solid currentColor;
+  padding-right: 10px;
+  text-align: center;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+}
+
+.facts-grid-row-is-clicked {
+  font-weight: bold;
+}
+
+.mat-mdc-table {
+  width: 100%;
+  max-height: 200px;
+  overflow: scroll;
+}

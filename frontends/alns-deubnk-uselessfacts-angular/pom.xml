@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>de.deutschebank.recruiting</groupId>
+        <artifactId>alns-deubnk-uselessfacts-apps-parent</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+        <relativePath>../../pom.xml</relativePath>
+    </parent>
+
+    <groupId>de.deutschebank.recruiting.frontends</groupId>
+    <artifactId>alns-deubnk-uselessfacts-angular</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <name>ALNS-DeutscheBank-UselessFactsApps-Frontends-Angular</name>
+    <description>DeutscheBank Recruiting :: Home Task :: Useless Facts App :: Frontends - Angular WebApp</description>
+
+    <build>
+      <plugins>
+        <plugin>
+          <groupId>com.github.eirslett</groupId>
+          <artifactId>frontend-maven-plugin</artifactId>
+          <version>1.12.0</version>
+          <executions>
+            <execution>
+              <id>install-node-and-npm</id>
+              <goals>
+                <goal>install-node-and-npm</goal>
+              </goals>
+              <configuration>
+                <nodeVersion>v20.14.0</nodeVersion>
+                <npmVersion>10.7.0</npmVersion>
+              </configuration>
+            </execution>
+            <execution>
+              <id>npm-install</id>
+              <goals>
+                <goal>npm</goal>
+              </goals>
+              <configuration>
+                <arguments>install</arguments>
+              </configuration>
+            </execution>
+            <execution>
+              <id>build-frontend</id>
+              <goals>
+                <goal>npm</goal>
+              </goals>
+              <configuration>
+                <arguments>run build</arguments>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </build>
+
+</project>

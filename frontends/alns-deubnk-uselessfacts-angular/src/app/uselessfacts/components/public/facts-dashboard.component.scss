@@ -1,0 +1,90 @@
+.facts-dashboard {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+
+  .grid-table {
+    flex: 1;
+    display: flex;
+
+    mat-table {
+      width: 100%;
+      margin-right: 16px;
+    }
+
+    .fact-details {
+      width: 100%;
+      padding: 5px;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+    }
+  }
+
+  .operations {
+    margin-top: 5px;
+  }
+
+}
+
+.facts-grid-table {
+  width: 100%;
+  margin-right: 16px;
+}
+
+.mat-column-shortenedUrl {
+  width: 100px;
+  border-right: 1px solid currentColor;
+  padding-right: 10px;
+  text-align: center;
+}
+
+.mat-column-text {
+  // width: 500px;
+  border-right: 1px solid currentColor;
+  padding-right: 10px;
+  text-align: left;
+}
+
+.mat-column-language {
+  width: 40px;
+  border-right: 1px solid currentColor;
+  padding-right: 10px;
+  text-align: center;
+}
+
+.mat-mdc-row .mat-mdc-cell {
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid transparent;
+  cursor: pointer;
+}
+
+.mat-mdc-row:hover .mat-mdc-cell {
+  border-color: currentColor;
+}
+
+.facts-grid-row-is-clicked {
+  font-weight: bold;
+}
+
+.mat-mdc-table {
+  width: 100%;
+  max-height: 200px;
+  overflow: scroll;
+}
+
+.fact-details {
+  width: 95%;
+  padding: 1px;
+  // background-color: lightyellow;
+  // border: 1px solid #ddd;
+}
+
+.fact-details-fake-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.fact-details-field-full-width {
+  width: 100%;
+}

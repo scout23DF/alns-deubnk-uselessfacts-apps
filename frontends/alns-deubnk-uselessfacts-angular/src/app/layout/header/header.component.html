@@ -1,0 +1,36 @@
+<mat-toolbar color="secondary">
+
+  <div id="companyLogo"></div>
+
+  <div>
+    <button mat-button [matMenuTriggerFor]="publicFeaturesMenu">Public Features</button>
+    <mat-menu #publicFeaturesMenu="matMenu" yPosition="below">
+      <button mat-menu-item routerLink="public/facts-dashboard">Facts Dashboard</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="privateFeaturesMenu" *ngIf="isAdmin()" >Private Features</button>
+    <mat-menu #privateFeaturesMenu="matMenu" xPosition="after">
+      <button mat-menu-item routerLink="private/analytics">Analytics</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="changeThemeMenu">Change Theme</button>
+    <mat-menu #changeThemeMenu="matMenu" xPosition="after">
+      @for (oneTheme of availableThemesList; track oneTheme) {
+        <button mat-menu-item (click)="setTheme(oneTheme)">{{ oneTheme }}</button>
+      }
+    </mat-menu>
+  </div>
+
+  <span class="spacer"></span>
+
+  <div class="title">
+    <span>Deutsche Bank :: Useless Facts App</span>
+  </div>
+
+  <div style="">
+    <!-- Buttons to simulate Login/Logout -->
+    <button mat-raised-button (click)="loginAsAdmin()" *ngIf="!isAdmin()">Login as Admin</button>
+    <button mat-raised-button (click)="logout()" *ngIf="isAdmin()">Logout</button>
+  </div>
+
+</mat-toolbar>

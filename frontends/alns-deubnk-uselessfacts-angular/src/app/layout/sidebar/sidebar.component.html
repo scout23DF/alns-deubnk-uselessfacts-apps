@@ -1,0 +1,12 @@
+<mat-sidenav-container>
+  <mat-sidenav
+    [mode]="isExpanded ? 'side' : 'over'"
+    [opened]="isExpanded"
+    (mouseenter)="isExpanded = true"
+    (mouseleave)="isExpanded = false">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/facts">Useles Facts Panel</a>
+      <a mat-list-item routerLink="/admin">Analytics</a>
+    </mat-nav-list>
+  </mat-sidenav>
+</mat-sidenav-container>

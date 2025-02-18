@@ -1,0 +1,5 @@
+.content {
+  padding-top: 64px; /* altura da barra superior */
+  padding-bottom: 64px; /* altura do rodapé */
+  min-height: calc(100vh - 128px); /* altura total menos cabeçalho e rodapé */
+}

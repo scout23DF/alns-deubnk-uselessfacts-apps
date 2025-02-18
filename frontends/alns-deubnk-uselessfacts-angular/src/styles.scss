@@ -1,0 +1,48 @@
+/* You can add global styles to this file, and also import other style files */
+@import './app/layout/themes/light-theme.scss';
+@import './app/layout/themes/dark-theme.scss';
+@import './app/layout/themes/colorful-theme.scss';
+@import './app/layout/themes/monochrome-theme.scss';
+
+// Defina o tema padrão
+:root {
+  --primary-color: #1976d2; // Cor primária padrão
+  --background-color: #ffffff; // Cor de fundo padrão
+  --text-color: #000000; // Cor do texto padrão
+}
+
+// Classes para os temas
+.light-theme {
+  --primary-color: #1976d2;
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+.dark-theme {
+  --primary-color: #bb86fc;
+  --background-color: #121212;
+  --text-color: #ffffff;
+}
+
+.colorful-theme {
+  --primary-color: #ff4081;
+  --background-color: #f0f0f0;
+  --text-color: #333333;
+}
+
+.monochrome-theme {
+  --primary-color: #000000;
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  height: 100%;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+// html, body { height: 100%; }
+// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

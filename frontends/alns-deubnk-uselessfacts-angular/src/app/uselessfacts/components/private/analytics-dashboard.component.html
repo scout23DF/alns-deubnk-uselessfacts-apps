@@ -1,0 +1,221 @@
+<div class="analytics-dashboard">
+
+  <mat-grid-list cols="12" [gutterSize]="'10px'" rowHeight="30px">
+
+    <mat-grid-tile colspan="12" rowspan="1" style="text-align: left;">
+      <h2>Analytics and Statistics:</h2>
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+  <mat-grid-list cols="12" [gutterSize]="'10px'" rowHeight="480px">
+
+    <mat-grid-tile colspan="4" rowspan="1">
+
+      <div class="analytics-details">
+        <mat-card appearance="outlined">
+          <mat-card-header align="left">Analytics Facts Summary</mat-card-header>
+          <mat-card-content>
+            <div>
+              <p><strong>Total Facts count:</strong> {{ analyticsFactsSummary?.totalFactsCount }}</p>
+              <p><strong>Total Hits count:</strong> {{ analyticsFactsSummary?.totalHitsCount }}</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="4" rowspan="1">
+
+      <div class="analytics-details">
+
+        <mat-card appearance="outlined">
+          <mat-card-header>MOST Read Useless Fact:</mat-card-header>
+          <mat-card-content>
+
+            <form class="analytics-fake-form">
+              <mat-form-field class="analytics-field-full-width">
+                <mat-label>Hits Count:</mat-label>
+                <input matInput value="{{ analyticsFactsSummary?.mostReadUselessFact?.hitsCount }}" readonly>
+              </mat-form-field>
+              <br/>
+              <mat-form-field class="analytics-field-full-width">
+                <mat-label>Shortened URL:</mat-label>
+                <input matInput value="http://localhost:8080/api/facts/{{ analyticsFactsSummary?.mostReadUselessFact?.shortenedUrl }}" readonly>
+              </mat-form-field>
+              <br/>
+              <mat-form-field class="analytics-field-full-width">
+                <mat-label>Text:</mat-label>
+                <textarea matInput readonly>{{ analyticsFactsSummary?.mostReadUselessFact?.text }}</textarea>
+              </mat-form-field>
+              <br/>
+              <mat-form-field class="analytics-field-full-width">
+                <mat-label>Language:</mat-label>
+                <input matInput value="{{ analyticsFactsSummary?.mostReadUselessFact?.language }}" readonly>
+              </mat-form-field>
+              <br/>
+              <mat-form-field class="analytics-field-full-width">
+                <mat-label>Permanent Link:</mat-label>
+                <textarea matInput readonly>{{ analyticsFactsSummary?.mostReadUselessFact?.permalink }}</textarea>
+              </mat-form-field>
+              <br/>
+            </form>
+
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="4" rowspan="1">
+
+      <div class="analytics-details">
+
+        <mat-card appearance="outlined">
+          <mat-card-header>LEAST Read Useless Fact:</mat-card-header>
+          <mat-card-content>
+
+            <form class="analytics-fake-form">
+              <mat-form-field class="analytics-field-full-width">
+                <mat-label>Hits Count:</mat-label>
+                <input matInput value="{{ analyticsFactsSummary?.leastReadUselessFact?.hitsCount }}" readonly>
+              </mat-form-field>
+              <br/>
+              <mat-form-field class="analytics-field-full-width">
+                <mat-label>Shortened URL:</mat-label>
+                <input matInput value="http://localhost:8080/api/facts/{{ analyticsFactsSummary?.leastReadUselessFact?.shortenedUrl }}" readonly>
+              </mat-form-field>
+              <br/>
+              <mat-form-field class="analytics-field-full-width">
+                <mat-label>Text:</mat-label>
+                <textarea matInput readonly>{{ analyticsFactsSummary?.leastReadUselessFact?.text }}</textarea>
+              </mat-form-field>
+              <br/>
+              <mat-form-field class="analytics-field-full-width">
+                <mat-label>Language:</mat-label>
+                <input matInput value="{{ analyticsFactsSummary?.leastReadUselessFact?.language }}" readonly>
+              </mat-form-field>
+              <br/>
+              <mat-form-field class="analytics-field-full-width">
+                <mat-label>Permanent Link:</mat-label>
+                <textarea matInput readonly>{{ analyticsFactsSummary?.leastReadUselessFact?.permalink }}</textarea>
+              </mat-form-field>
+              <br/>
+            </form>
+
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
+    </mat-grid-tile>
+
+  </mat-grid-list>
+
+  <mat-grid-list cols="12" rowHeight="1:4">
+
+    <mat-grid-tile colspan="7" rowspan="1">
+
+      <div class="analytics-details">
+
+        <mat-card appearance="outlined">
+          <mat-card-header>Hits per Useless Fact and Statistics Metadata:</mat-card-header>
+          <mat-card-content>
+
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="statsMetadataPaginatedDataSource" class="facts-grid-table">
+                <ng-container matColumnDef="uselessFactResponse.shortenedUrl">
+                  <th mat-header-cell *matHeaderCellDef>Shortened URL:</th>
+                  <td mat-cell *matCellDef="let theStatsMetadata"
+                      (click)="selectUselessFact(theStatsMetadata)"> {{ theStatsMetadata?.uselessFactResponse.shortenedUrl }}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="uselessFactResponse.text">
+                  <th mat-header-cell *matHeaderCellDef>Text:</th>
+                  <td mat-cell *matCellDef="let theStatsMetadata"
+                      (click)="selectUselessFact(theStatsMetadata)"> {{ theStatsMetadata?.uselessFactResponse.text }}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="hitsCount">
+                  <th mat-header-cell *matHeaderCellDef> Hits Count:</th>
+                  <td mat-cell *matCellDef="let theStatsMetadata"> {{ theStatsMetadata?.hitsCount }}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['uselessFactResponse.shortenedUrl', 'uselessFactResponse.text', 'hitsCount']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['uselessFactResponse.shortenedUrl', 'uselessFactResponse.text', 'hitsCount'];"></tr>
+              </table>
+
+              <mat-paginator [pageSizeOptions]="[6, 12, 20]"
+                             showFirstLastButtons
+                             pageIndex
+                             aria-label="Select page of periodic elements">
+              </mat-paginator>
+
+            </div>
+
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
+    </mat-grid-tile>
+
+    <mat-grid-tile colspan="5" rowspan="1">
+
+      <div class="analytics-details">
+
+        <mat-card appearance="outlined">
+          <mat-card-header>Log Entries per Useless Fact: {{ selectedStatisticsMetadata?.uselessFactResponse?.shortenedUrl }}</mat-card-header>
+          <mat-card-content>
+
+            <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="logEntriesPaginatedDataSource" class="facts-grid-table">
+                <ng-container matColumnDef="typeOfEntry">
+                  <th mat-header-cell *matHeaderCellDef> Type:</th>
+                  <td mat-cell *matCellDef="let theLogEntry"> {{ theLogEntry?.typeOfEntry }}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="accessedAt">
+                  <th mat-header-cell *matHeaderCellDef> Accessed At:</th>
+                  <td mat-cell *matCellDef="let theLogEntry"> {{ theLogEntry?.accessedAt }}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="ipAddress">
+                  <th mat-header-cell *matHeaderCellDef> IP:</th>
+                  <td mat-cell *matCellDef="let theLogEntry"> {{ theLogEntry?.ipAddress }}</td>
+                </ng-container>
+                <ng-container matColumnDef="hostName">
+                  <th mat-header-cell *matHeaderCellDef> Hostname:</th>
+                  <td mat-cell *matCellDef="let theLogEntry"> {{ theLogEntry?.hostName }}</td>
+                </ng-container>
+                <ng-container matColumnDef="username">
+                  <th mat-header-cell *matHeaderCellDef> Username:</th>
+                  <td mat-cell *matCellDef="let theLogEntry"> {{ theLogEntry?.username }}</td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="['typeOfEntry', 'accessedAt', 'ipAddress']"></tr>
+                <tr mat-row *matRowDef="let row; columns: ['typeOfEntry', 'accessedAt', 'ipAddress'];"></tr>
+              </table>
+              <mat-paginator id="logEntriesPaginator"
+                             [pageSizeOptions]="[4, 8, 16]"
+                             showFirstLastButtons
+                             pageIndex
+                             aria-label="Select page of periodic elements">
+              </mat-paginator>
+
+            </div>
+
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
+    </mat-grid-tile>
+
+
+  </mat-grid-list>
+
+</div>
+
