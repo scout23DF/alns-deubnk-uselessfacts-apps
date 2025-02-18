@@ -150,8 +150,13 @@ You can create a Docker image for the Angular app similarly or serve it using a 
 
 ## Screenshots
 
-### Landing Page Screenshot
-### Statistics Page Screenshot
+![Public page: Facts Dashboard](./docs-assets/screenshot-01-facts-dashboard.png)
+
+![Protected page: Analytics Dashboard](./docs-assets/screenshot-02-private-analytics-dashboard.png)
+
+![Protected page: Analytics Dashboard - Fact Access Details](./docs-assets/screenshot-03-fact-access-details.png)
+
+![Protected page: Authorization checking](./docs-assets/screenshot-04-authorization-error.png)
 
 ## Error Handling
 
