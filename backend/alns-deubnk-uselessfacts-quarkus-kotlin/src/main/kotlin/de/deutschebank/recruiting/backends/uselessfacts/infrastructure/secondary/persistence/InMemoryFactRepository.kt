@@ -25,7 +25,7 @@ class InMemoryFactRepository: FactRepository {
     }
 
     override fun findAll(): List<UselessFact> {
-        return factsCacheMap.values.toList()
+        return factsCacheMap.values.toList().sortedBy { it.text }
     }
 
     override fun update(factToUpdate: UselessFact) {
