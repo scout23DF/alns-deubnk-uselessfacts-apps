@@ -73,6 +73,7 @@ out/
 # Maven
 ######################
 /target/
+.quinoa/
 
 ######################
 # Package Files

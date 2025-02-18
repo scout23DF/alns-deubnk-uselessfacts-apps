@@ -130,12 +130,13 @@ In case you don't want to rely on `Quinoa Quarkus Extension`, manage the Angular
    ```bash
     cd backend
     ./mvnw package -Dquarkus.container-image.build=true
-        
+   ```
+
 #### Run Docker Container:
 
    ```bash
     docker run -i --rm -p 8080:8080 <your-docker-image>
-
+   ```
 #### Serve the Frontend:
 
 You can create a Docker image for the Angular app similarly or serve it using a static server.
@@ -162,13 +163,14 @@ Unit tests are included to ensure code quality and reliability. To run tests, ex
 
    ```bash
     ./mvnw test
+   ```
 
-# Conclusion
+## Conclusion
 This Random Facts Application demonstrates a clean and maintainable architecture, providing a robust solution for fetching and managing random facts. Feel free to extend and modify the application as needed.
 
-# License
+## License
 [TBD]
 
-# Notes:
+## Notes:
 - The security section has been added to clarify the API key protection mechanism for the private endpoint and analytics page.
 - The statement regarding the scope of the authentication/authorization implementation has also been included.
