@@ -14,6 +14,7 @@ import io.restassured.RestAssured
 import io.restassured.response.Response
 import jakarta.inject.Inject
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.mockito.InjectMocks
@@ -48,26 +49,19 @@ class FactsControllerIT {
         MockitoAnnotations.openMocks(this)
     }
 
+    @BeforeEach
+    fun setupAndPrepare() {
+        factsRepository.deleteAll()
+    }
+
     @Test
     @DisplayName("fetchFact should fetch and save one UselessFact and return HTTP 201")
     fun shouldFetchAndSaveOneUselessFactWithHTTP201() {
 
         var baseContent = "Fact#1"
         var fakeHitCount = 5
-        val fakeStoredFact = UselessFact(
-            shortenedUrl = "fakeShortenedUrl-$baseContent",
-            originalId = "SomeOriginalID-$baseContent",
-            text = "SomeLongTextHere :: $baseContent",
-            language = "en",
-            permalink = "http://example.com/fact_perma-$baseContent",
-            statisticsMetadata = null
-        )
-        val statisticsMetadata = StatisticsMetadata(
-            uselessFact = null,
-            hitsCount = fakeHitCount,
-            logAccessEntriesList = emptyList()
-        )
-        fakeStoredFact.statisticsMetadata = statisticsMetadata
+
+        val fakeStoredFact = createFakeDomainFact("Fact#1", fakeHitCount, false)
 
         `when`(jsphFactFetcherService.fetchRandomFact("en")).thenReturn(fakeStoredFact)
 
@@ -82,8 +76,6 @@ class FactsControllerIT {
         val returnedFact = response.jsonPath().getObject(".", UselessFactResponse::class.java)
         assertNotNull(returnedFact)
     }
-
-
 
     @Test
     @DisplayName("getAllFacts should return empty list with HTTP 200")
@@ -102,6 +94,12 @@ class FactsControllerIT {
             createFakeFactResponse("Fact#4", 4)
         )
 
+        `when`(factService.getAllFacts()).thenReturn(domainFacts)
+        `when`(restFactsMapper.toFactResponseFromDomain(domainFacts[0])).thenReturn(responseFacts[0])
+        `when`(restFactsMapper.toFactResponseFromDomain(domainFacts[1])).thenReturn(responseFacts[1])
+        `when`(restFactsMapper.toFactResponseFromDomain(domainFacts[2])).thenReturn(responseFacts[2])
+        `when`(restFactsMapper.toFactResponseFromDomain(domainFacts[3])).thenReturn(responseFacts[3])
+
         // Act
         val response: Response = RestAssured.given()
             .`when`().get("/api/facts")
@@ -118,7 +116,7 @@ class FactsControllerIT {
         assertContains(returnedFacts[3].text, "Fact#4")
     }
 
-    private fun createFakeDomainFact(baseContent: String, fakeHitCount: Int): UselessFact {
+    private fun createFakeDomainFact(baseContent: String, fakeHitCount: Int, shouldPersist: Boolean = true): UselessFact {
         val fakeStoredFact = UselessFact(
             shortenedUrl = "fakeShortenedUrl-$baseContent",
             originalId = "SomeOriginalID-$baseContent",
@@ -134,7 +132,9 @@ class FactsControllerIT {
         )
         fakeStoredFact.statisticsMetadata = statisticsMetadata
 
-        factsRepository.save(fakeStoredFact)
+        if (shouldPersist) {
+            factsRepository.save(fakeStoredFact)
+        }
 
         return fakeStoredFact
     }

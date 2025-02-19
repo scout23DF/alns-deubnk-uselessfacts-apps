@@ -7,5 +7,6 @@ interface FactRepository {
     fun findAll(): List<UselessFact>
     fun update(factToUpdate: UselessFact)
     fun delete(id: String)
+    fun deleteAll()
 
 }

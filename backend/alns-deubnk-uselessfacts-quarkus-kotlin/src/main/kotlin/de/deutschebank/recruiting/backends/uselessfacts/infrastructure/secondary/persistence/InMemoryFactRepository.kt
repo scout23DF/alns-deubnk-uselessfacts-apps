@@ -41,4 +41,8 @@ class InMemoryFactRepository: FactRepository {
         }
     }
 
+    override fun deleteAll() {
+        factsCacheMap.clear()
+    }
+
 }
